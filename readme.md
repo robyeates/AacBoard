@@ -125,20 +125,25 @@ the UI layer. That is a real gap.
 
 Exception handling -- how do exceptions bubble through async call chains, and what
 does the equivalent of Spring's @ControllerAdvice look like in a .NET minimal API
-or WPF application.
+or WPF application.    
+
 API contracts -- HTTP and RPC in C#. Minimal API vs controllers, gRPC with
 Grpc.AspNetCore, and how contract-first design (OpenAPI, Protobuf) is typically
-handled compared to Spring ecosystem tooling.
+handled compared to Spring ecosystem tooling.    
+
 Security / SSO / JWT -- encryption at rest, in-memory secret handling, and whether
 the Kubernetes-native patterns I know (Vault, etcd, sealed secrets, workload identity)
 map cleanly onto Azure-hosted .NET services or whether there is a preferred
-Microsoft.Extensions approach that replaces them.
+Microsoft.Extensions approach that replaces them.    
+
 Persistence -- ADO.NET connection management vs HikariCP and PgBouncer. How Entity
 Framework Core handles connection pooling, and whether the tuning surface is comparable
-to what I am used to on the JVM.
+to what I am used to on the JVM.    
+
 Observability -- hooking into APM tooling and exposing Prometheus metrics from a
 .NET service. OpenTelemetry.Instrumentation.* looks like the right path but I have
-not validated it end to end.
+not validated it end to end.    
+
 UI -- WPF and Avalonia vs Swing and JavaFX. This is the most significant gap for
 a Smartbox context given Grid is a desktop-first product. It is a real ramp, not a
 transferable-concepts hand-wave.
