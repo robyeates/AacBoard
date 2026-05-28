@@ -2,8 +2,7 @@
 
 A small .NET 8 project modelling an AAC (Augmentative and Alternative Communication)
 board. I built this to prove to myself that the Java-to-C# transition is real, not
-just "the concepts transfer" hand-waving. It is aimed at the Smartbox interview context
-but the domain model is genuine.
+just "the concepts transfer" hand-waving. With help from Claude, I wanted to get into the real differences
 
 AAC software like Grid 3 lets people with speech disabilities communicate by selecting
 symbols on a grid, which are assembled into spoken phrases. This project models the
@@ -102,31 +101,44 @@ than `Optional<Symbol>` — same intent, less ceremony at the call site.
 
 ---
 
-## Honest notes
+## Notes
 
 Things that were straightforward coming from Java: the type system, generics, collections,
 async patterns, records, and the overall project structure. The `dotnet` CLI feels like
-Maven with less XML.
+Maven lifecycle stages without XML.
 
-Things that took a bit of reading: C# properties (no Lombok needed, auto-properties are
+Things that took a bit of studying: C# properties (no Lombok needed, auto-properties are
 built in), the difference between `IEnumerable`, `ICollection`, `IList`, and their
 read-only counterparts, and how nullable reference types interact with the compiler
 warnings rather than being a runtime feature.
 
-Things I think are genuinely better than Java: LINQ is more composable than streams in
-practice, `async/await` is less verbose than `CompletableFuture` chaining, and not
-needing Lombok for data classes is a relief.
+LINQ seems more composable than streams in practice, `async/await` is less verbose than `CompletableFuture` chaining. 
+
+Data classes vs Records is interesting
 
 WPF, XAML, and Avalonia are not covered here. I did not want to fake familiarity with
-the UI layer. That is a real gap and a short ramp.
+the UI layer. That is a real gap.
 
 ---
 
-## What is AAC
+## Left to investigate
 
-Augmentative and Alternative Communication covers any method that supplements or
-replaces speech for people who cannot rely on it. Symbol-based AAC systems like Grid 3
-display a grid of images and words. A user selects symbols in sequence to build a
-phrase, which the device then speaks aloud. The order and layout of symbols matters
-enormously for communication speed, which is why vocabulary research and symbol
-prediction are active areas of work in this space.
+Exception handling -- how do exceptions bubble through async call chains, and what
+does the equivalent of Spring's @ControllerAdvice look like in a .NET minimal API
+or WPF application.
+API contracts -- HTTP and RPC in C#. Minimal API vs controllers, gRPC with
+Grpc.AspNetCore, and how contract-first design (OpenAPI, Protobuf) is typically
+handled compared to Spring ecosystem tooling.
+Security / SSO / JWT -- encryption at rest, in-memory secret handling, and whether
+the Kubernetes-native patterns I know (Vault, etcd, sealed secrets, workload identity)
+map cleanly onto Azure-hosted .NET services or whether there is a preferred
+Microsoft.Extensions approach that replaces them.
+Persistence -- ADO.NET connection management vs HikariCP and PgBouncer. How Entity
+Framework Core handles connection pooling, and whether the tuning surface is comparable
+to what I am used to on the JVM.
+Observability -- hooking into APM tooling and exposing Prometheus metrics from a
+.NET service. OpenTelemetry.Instrumentation.* looks like the right path but I have
+not validated it end to end.
+UI -- WPF and Avalonia vs Swing and JavaFX. This is the most significant gap for
+a Smartbox context given Grid is a desktop-first product. It is a real ramp, not a
+transferable-concepts hand-wave.
