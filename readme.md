@@ -4,7 +4,7 @@ A small .NET 8 project modelling an AAC (Augmentative and Alternative Communicat
 board. I built this to prove to myself that the Java-to-C# transition is real, not
 just "the concepts transfer" hand-waving. With help from Claude, I wanted to get into the real differences
 
-AAC software like Grid 3 lets people with speech disabilities communicate by selecting
+AAC software lets people with speech disabilities communicate by selecting
 symbols on a grid, which are assembled into spoken phrases. This project models the
 core of that loop: a symbol board, a phrase builder, and a simple predictor that learns
 which symbols tend to follow each other.
