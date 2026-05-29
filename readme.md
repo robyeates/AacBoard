@@ -144,6 +144,4 @@ Observability -- hooking into APM tooling and exposing Prometheus metrics from a
 .NET service. OpenTelemetry.Instrumentation.* looks like the right path but I have
 not validated it end to end.    
 
-UI -- WPF and Avalonia vs Swing and JavaFX. This is the most significant gap for
-a Smartbox context given Grid is a desktop-first product. It is a real ramp, not a
-transferable-concepts hand-wave.
+UI -- WPF and Avalonia vs Swing and JavaFX. This is the most significant gap for me.
